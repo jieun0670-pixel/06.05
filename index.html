@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자 기억 대결</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="game-shell" aria-labelledby="game-title">
+        <div class="top-bar">
+          <div>
+            <p class="eyebrow">2인 숫자 기억 게임</p>
+            <h1 id="game-title">숫자 기억 대결</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" title="처음부터 다시 시작" aria-label="처음부터 다시 시작">
+            ↻
+          </button>
+        </div>
+
+        <div class="winner-banner" id="winnerBanner" hidden>
+          <span class="winner-label">축하합니다</span>
+          <strong id="winnerName"></strong>
+          <span id="winnerDetail"></span>
+        </div>
+
+        <form class="players" id="playersForm">
+          <label>
+            <span>1번 플레이어</span>
+            <input id="playerOne" name="playerOne" autocomplete="off" maxlength="12" placeholder="이름 입력" required />
+          </label>
+          <label>
+            <span>2번 플레이어</span>
+            <input id="playerTwo" name="playerTwo" autocomplete="off" maxlength="12" placeholder="이름 입력" required />
+          </label>
+          <button class="primary-button" type="submit">게임 시작</button>
+        </form>
+
+        <section class="board" aria-live="polite">
+          <div class="status-line">
+            <span id="roundStatus">이름을 입력하고 시작하세요.</span>
+            <span id="timerStatus"></span>
+          </div>
+
+          <div class="numbers-grid" id="numbersGrid" aria-label="기억할 숫자 10개"></div>
+
+          <form class="answer-panel" id="answerForm" hidden>
+            <h2 id="answerTitle">정답 입력</h2>
+            <p id="answerHint">방금 본 숫자 10개를 순서와 상관없이 입력하세요.</p>
+            <div class="answer-grid" id="answerGrid"></div>
+            <button class="primary-button" type="submit">제출</button>
+          </form>
+        </section>
+
+        <section class="score-panel" aria-label="점수판">
+          <div>
+            <span id="scoreOneName">1번</span>
+            <strong id="scoreOne">0</strong>
+          </div>
+          <div>
+            <span id="scoreTwoName">2번</span>
+            <strong id="scoreTwo">0</strong>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="./src/firebase.js"></script>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

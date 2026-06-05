@@ -1,0 +1,48 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "numberMemoryWinners": {
+      "$winnerId": {
+        ".read": false,
+        ".write": "!data.exists() && newData.exists() && newData.hasChildren(['winner', 'players', 'scores', 'isDraw', 'createdAt']) && newData.childrenCount() == 5",
+        "winner": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30"
+        },
+        "players": {
+          ".validate": "newData.hasChildren(['0', '1']) && newData.childrenCount() == 2",
+          "0": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30"
+          },
+          "1": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 30"
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
+        "scores": {
+          ".validate": "newData.hasChildren(['0', '1']) && newData.childrenCount() == 2",
+          "0": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+          },
+          "1": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10"
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
+        "isDraw": {
+          ".validate": "newData.isBoolean()"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber() && newData.val() <= now"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
